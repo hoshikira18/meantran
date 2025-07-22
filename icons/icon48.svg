@@ -1,0 +1,7 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="8" fill="#1a73e8"/>
+  <text x="24" y="32" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">T</text>
+  <circle cx="12" cy="12" r="3" fill="white" opacity="0.8"/>
+  <circle cx="36" cy="12" r="3" fill="white" opacity="0.8"/>
+  <path d="M8 40 Q24 32 40 40" stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

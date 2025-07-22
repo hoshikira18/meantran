@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MeanTran Icon Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      .icon-preview {
+        margin: 20px 0;
+      }
+      canvas {
+        border: 1px solid #ccc;
+        margin: 10px;
+      }
+      button {
+        background: #1a73e8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1557b0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MeanTran Icon Generator</h1>
+    <p>
+      Click the buttons below to generate and download the required PNG icons
+      for the Chrome extension.
+    </p>
+
+    <div class="icon-preview">
+      <h3>16x16 Icon</h3>
+      <canvas id="canvas16" width="16" height="16"></canvas>
+      <button onclick="generateIcon(16)">Generate 16x16 Icon</button>
+      <button onclick="downloadIcon(16)">Download icon16.png</button>
+    </div>
+
+    <div class="icon-preview">
+      <h3>48x48 Icon</h3>
+      <canvas id="canvas48" width="48" height="48"></canvas>
+      <button onclick="generateIcon(48)">Generate 48x48 Icon</button>
+      <button onclick="downloadIcon(48)">Download icon48.png</button>
+    </div>
+
+    <div class="icon-preview">
+      <h3>128x128 Icon</h3>
+      <canvas id="canvas128" width="128" height="128"></canvas>
+      <button onclick="generateIcon(128)">Generate 128x128 Icon</button>
+      <button onclick="downloadIcon(128)">Download icon128.png</button>
+    </div>
+
+    <script>
+      function generateIcon(size) {
+        const canvas = document.getElementById("canvas" + size);
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, size, size);
+
+        // Draw background with rounded corners
+        const radius = size * 0.15;
+        ctx.fillStyle = "#1a73e8";
+        ctx.beginPath();
+        ctx.roundRect(0, 0, size, size, radius);
+        ctx.fill();
+
+        // Draw main "T" letter
+        ctx.fillStyle = "white";
+        ctx.font = `bold ${size * 0.6}px Arial`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("T", size / 2, size / 2 + size * 0.05);
+
+        // Draw decorative dots
+        const dotSize = size * 0.08;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.beginPath();
+        ctx.arc(size * 0.25, size * 0.25, dotSize, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(size * 0.75, size * 0.25, dotSize, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw bottom curve if size is large enough
+        if (size >= 48) {
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+          ctx.lineWidth = size * 0.04;
+          ctx.beginPath();
+          ctx.moveTo(size * 0.2, size * 0.85);
+          ctx.quadraticCurveTo(size / 2, size * 0.75, size * 0.8, size * 0.85);
+          ctx.stroke();
+        }
+      }
+
+      function downloadIcon(size) {
+        const canvas = document.getElementById("canvas" + size);
+        const link = document.createElement("a");
+        link.download = `icon${size}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+
+      // Generate all icons on page load
+      window.onload = function () {
+        generateIcon(16);
+        generateIcon(48);
+        generateIcon(128);
+      };
+
+      // Polyfill for roundRect if not supported
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (
+          x,
+          y,
+          width,
+          height,
+          radius
+        ) {
+          this.beginPath();
+          this.moveTo(x + radius, y);
+          this.lineTo(x + width - radius, y);
+          this.quadraticCurveTo(x + width, y, x + width, y + radius);
+          this.lineTo(x + width, y + height - radius);
+          this.quadraticCurveTo(
+            x + width,
+            y + height,
+            x + width - radius,
+            y + height
+          );
+          this.lineTo(x + radius, y + height);
+          this.quadraticCurveTo(x, y + height, x, y + height - radius);
+          this.lineTo(x, y + radius);
+          this.quadraticCurveTo(x, y, x + radius, y);
+          this.closePath();
+        };
+      }
+    </script>
+  </body>
+</html>

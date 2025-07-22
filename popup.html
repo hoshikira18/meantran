@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="icons/icon48.png" alt="MeanTran" class="logo" />
+        <h1>MeanTran Settings</h1>
+      </div>
+
+      <div class="section">
+        <h3>🔑 API Configuration</h3>
+        <div class="form-group">
+          <label for="apiKey">Gemini API Key:</label>
+          <input
+            type="password"
+            id="apiKey"
+            placeholder="Enter your Gemini API key"
+          />
+          <div class="help-text">
+            Get your API key from
+            <a href="https://makersuite.google.com/app/apikey" target="_blank"
+              >Google AI Studio</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>🌍 Translation Preferences</h3>
+
+        <div class="form-group">
+          <label for="targetLanguage">Target Language:</label>
+          <select id="targetLanguage">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="it">Italian</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="zh">Chinese (Simplified)</option>
+            <option value="zh-TW">Chinese (Traditional)</option>
+            <option value="ar">Arabic</option>
+            <option value="hi">Hindi</option>
+            <option value="th">Thai</option>
+            <option value="vi">Vietnamese</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="translationStyle">Translation Style:</label>
+          <select id="translationStyle">
+            <option value="natural">Natural & Fluent</option>
+            <option value="literal">Literal Translation</option>
+            <option value="contextual">Contextual & Cultural</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="colorTheme">Color Theme:</label>
+          <select id="colorTheme">
+            <option value="dark-blue">Dark Blue (Default)</option>
+            <option value="dark-purple">Dark Purple</option>
+            <option value="dark-green">Dark Green</option>
+            <option value="dark-red">Dark Red</option>
+            <option value="dark-orange">Dark Orange</option>
+            <option value="cyberpunk">Cyberpunk</option>
+            <option value="ocean">Ocean</option>
+            <option value="sunset">Sunset</option>
+            <option value="forest">Forest</option>
+            <option value="minimal">Minimal</option>
+          </select>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="autoDetectLanguage" />
+            <span class="checkmark"></span>
+            Auto-detect source language
+          </label>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="showOriginal" />
+            <span class="checkmark"></span>
+            Show original text in results
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>💡 Usage Tips</h3>
+        <ul class="tips">
+          <li>Select any text on a webpage to see the translate button</li>
+          <li>Use custom prompts for specific translation needs</li>
+          <li>Translations are powered by Google's Gemini AI</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="button-group">
+          <button id="saveSettings" class="btn-primary">Save Settings</button>
+          <button id="testTranslation" class="btn-secondary">
+            Test Translation
+          </button>
+        </div>
+        <div id="status" class="status"></div>
+      </div>
+    </div>
+
+    <!-- Test Modal -->
+    <div id="testModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Test Translation</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="testText">Text to translate:</label>
+            <textarea
+              id="testText"
+              placeholder="Enter text to test translation..."
+            >
+Hello, how are you?</textarea
+            >
+          </div>
+          <div class="form-group">
+            <label for="customPrompt">Custom prompt (optional):</label>
+            <textarea
+              id="customPrompt"
+              placeholder="e.g., Translate this to formal Spanish..."
+            ></textarea>
+          </div>
+          <button id="runTest" class="btn-primary">Translate</button>
+          <div id="testResult" class="test-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

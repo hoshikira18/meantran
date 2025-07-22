@@ -1,0 +1,23 @@
+{
+  "name": "meantran-chrome-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension for translating selected text using Gemini AI",
+  "scripts": {
+    "build": "echo 'Extension ready for loading'",
+    "package": "zip -r meantran-extension.zip . -x node_modules/\\* .git/\\* \\*.zip"
+  },
+  "keywords": [
+    "chrome-extension",
+    "translation",
+    "gemini",
+    "ai",
+    "text-selection"
+  ],
+  "author": "MeanTran Team",
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/meantran"
+  }
+}
